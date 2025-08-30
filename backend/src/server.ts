@@ -11,6 +11,9 @@ import connectToMongoDB from './config/db';
 import login from './routes/login';
 import signup from './routes/signup';
 import addProduct from './routes/addProduct';
+import categoryFilter from './routes/categoryFilter'
+import add_and_remove_and_updatetoCart from './routes/add_and_remove_and_updatetoCart'
+import search from './routes/search'
 import authMiddleware from './middleware/verifyToken';
 
 const app = express();
@@ -27,6 +30,9 @@ app.use(express.json());
 app.set('io', io);
 
 app.use('/api/sellerDashboard', addProduct);
+app.use('/api/products', categoryFilter);
+app.use('/api/cart', add_and_remove_and_updatetoCart);
+app.use('/api/products', search);
 app.use('/api/auth', login);
 app.use('/api/auth', signup);
 
