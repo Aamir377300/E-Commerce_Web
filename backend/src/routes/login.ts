@@ -30,13 +30,13 @@ router.post('/login', async (req: Login, res: Response) => {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
+    // Your payload is correct, it uses 'id' which is consistent with the corrected middleware.
     const token = jwt.sign(
       { id: user._id, role: user.role },
       process.env.JWT_SECRET as string,
       { expiresIn: '1h' }
     );
 
-    // Return token and role to frontend for storing in localStorage
     return res.json({ token, role: user.role });
   } catch (err) {
     console.error('Login error:', err);

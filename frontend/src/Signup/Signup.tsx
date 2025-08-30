@@ -40,7 +40,7 @@ function Signup() {
       if (role === "customer") {
         navigate("/mainpage");
       } else if (role === "seller") {
-        navigate("/sellerdashboard");
+        navigate("/login");
       } else if (role === "deliveryboy") {
         navigate("/delivery");
       } else {

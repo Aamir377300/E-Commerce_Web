@@ -1,3 +1,5 @@
+
+
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -9,6 +11,7 @@ import connectToMongoDB from './config/db';
 import login from './routes/login';
 import signup from './routes/signup';
 import addProduct from './routes/addProduct';
+import authMiddleware from './middleware/verifyToken';
 
 const app = express();
 const PORT = process.env.PORT || 5002;
@@ -21,13 +24,11 @@ const io = new SocketIOServer(httpServer, {
 app.use(cors());
 app.use(express.json());
 
-// Provide io instance to routes
 app.set('io', io);
 
 app.use('/api/sellerDashboard', addProduct);
 app.use('/api/auth', login);
 app.use('/api/auth', signup);
-
 
 app.get('/health', (req, res) => {
   res.send('Hello World from TypeScript Express!');
